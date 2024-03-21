@@ -13,7 +13,7 @@ class SendLastCommand:
         transporter = await self.createTrasporter(lastMessage.attachments[-1])
         tagsInMessage = self.__getAllTags(lastMessage.content)
         reviewers = self.__findReviewers(tagsInMessage, ctx)
-        print(reviewers)
+        # print(reviewers)
         try: 
             selected = reviewers[randint(0, len(reviewers) -1)]
         except:
