@@ -13,11 +13,13 @@ class SendLastCommand:
         transporter = await self.createTrasporter(lastMessage.attachments[-1])
         tagsInMessage = self.__getAllTags(lastMessage.content)
         reviewers = self.__findReviewers(tagsInMessage, ctx)
-        try: selected = reviewers[randint(0, len(reviewers) -1)]
+        print(reviewers)
+        try: 
+            selected = reviewers[randint(0, len(reviewers) -1)]
         except:
             bot_channel = bot.get_channel(1220238146499907584)
             message = await ctx.author.send(f"Não foi possível enviar o arquivo, {ctx.author.name.capitalize()}! Tente novamente mais tarde, os moderadores desse cargo podem não estar online.")
-            await bot_channel.send(f"Foi enviada essa mensagem para {ctx.author.name}: {message.content}")
+            await bot_channel.send(f'Foi enviada essa mensagem para {ctx.author.name}: "{message.content}"')
             return
         transporter.setAvaliatorId(selected.id)
         await self.__sendToAvaliator(transporter, ctx)
@@ -41,9 +43,13 @@ class SendLastCommand:
 
     def __findReviewers(self, tags, ctx) -> list:
         members = []
+        # print(members)
         role_ids = {int(tag.replace("&", "")) for tag in tags}
+        # print(role_ids)
         for member in ctx.guild.members:
+            # print(ctx.guild.members)
             if any(role.id in role_ids for role in member.roles):
+                # print(any(role.id in role_ids for role in member.roles))
                 members.append(member)
         if any(role.id in role_ids for role in ctx.author.roles):
             members.append(ctx.author)
