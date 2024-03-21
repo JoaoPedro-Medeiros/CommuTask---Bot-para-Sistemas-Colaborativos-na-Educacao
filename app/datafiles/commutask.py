@@ -1,10 +1,9 @@
-import discord as client
 from os.path import join, dirname, abspath
 
 class Datafile_CommuTask:
 
     def __init__(self):
-        self.token = self.__read_token()
+        self.__token = self.__read_token()
 
     def __read_token(self) -> str | None :
         try:
@@ -14,3 +13,6 @@ class Datafile_CommuTask:
         except FileNotFoundError:
             str_in = None
         return str_in
+
+    def getToken(self) -> str:
+        return self.__token
