@@ -1,5 +1,5 @@
 from app import bot
-from app.datafiles import Datafile_CommuTask
+from app.datafiles import DatafileCommuTask
 
-pack = Datafile_CommuTask()
-bot.run(pack.getToken())
+pack = DatafileCommuTask()
+bot.run(pack.get_token())

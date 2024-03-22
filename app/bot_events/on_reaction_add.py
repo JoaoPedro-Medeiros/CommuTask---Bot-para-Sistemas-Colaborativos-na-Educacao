@@ -16,25 +16,24 @@ class OnReactionAddEvent:
         self.__reacted = False
 
     async def execute(self, reaction, user):
-        if await self.initialVerifications(reaction, user):
+        if await self.initial_verifications(reaction, user):
             return
         
         if str(reaction.emoji) == '✅':
             file = FileTransporter()
-            try: await file.asyncInit(reaction.message.attachments[0])
+            try: await file.async_init(reaction.message.attachments[0])
             except: return
-            await self.sendToDrive(file.getFile())
+            await self.send_to_drive(file.get_file())
         await reaction.message.delete()
 
-    async def initialVerifications(self, reaction, user):
+    async def initial_verifications(self, reaction, user):
         if user.bot:
             return True
         
         if reaction.message.channel.name != str(user.id) and not user.guild_permissions.administrator: 
             return True
     
-    async def sendToDrive(self, path_to_file):
+    async def send_to_drive(self, path_to_file):
         print("Enviado para o Drive!") #TODO Aqui seria o envio para o drive
-        pass
 
 on_reaction_add_var = OnReactionAddEvent()

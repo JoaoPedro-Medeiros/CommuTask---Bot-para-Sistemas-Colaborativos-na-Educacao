@@ -1,6 +1,6 @@
 from os.path import join, dirname, abspath
 
-class Datafile_CommuTask:
+class DatafileCommuTask:
 
     def __init__(self):
         self.__token = self.__read_token()
@@ -14,5 +14,5 @@ class Datafile_CommuTask:
             str_in = None
         return str_in
 
-    def getToken(self) -> str:
+    def get_token(self) -> str:
         return self.__token

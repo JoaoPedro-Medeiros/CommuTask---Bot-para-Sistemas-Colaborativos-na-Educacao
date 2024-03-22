@@ -5,7 +5,7 @@ class FileTransporter :
         self.__file = None
         self.__avaliator_id = None
 
-    async def asyncInit(self, file, avaliator = None):
+    async def async_init(self, file, avaliator = None):
         file_extension = file.filename.split('.')[-1]
         file_content = await file.read()
         file_id = file.id
@@ -15,14 +15,14 @@ class FileTransporter :
         self.__file = filepath
         self.__avaliator_id = avaliator
     
-    async def removeFile(self) -> None:
+    async def remove_file(self) -> None:
         remove(self.__file)
     
-    def getFile(self):
+    def get_file(self):
         return self.__file
     
-    def getAvaliatorId(self):
+    def get_avaliator_id(self):
         return self.__avaliator_id
     
-    def setAvaliatorId(self, id) -> None:
+    def set_avaliator_id(self, id) -> None:
         self.__avaliator_id = id
